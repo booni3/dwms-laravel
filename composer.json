@@ -1,0 +1,30 @@
+{
+    "name": "booni3/dwms-laravel",
+    "description": "Dwms wrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Booni3",
+            "email": "adam@profilestudio.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "Booni3/Dwms": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Booni3\\Dwms\\Laravel\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Booni3\\Dwms\\Laravel\\DwmsServiceProvider"
+            ],
+            "aliases": {
+                "Dwms": "Booni3\\Dwms\\Laravel\\DwmsFacade"
+            }
+        }
+    }
+}
