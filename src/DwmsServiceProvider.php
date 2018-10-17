@@ -45,12 +45,13 @@ class DwmsServiceProvider extends ServiceProvider
 
             $config = $app->make('config');
 
-            $username = $config->get('dwms.username');
+            $baseUri = $config->get('dwms.baseUri');
+            $userName = $config->get('dwms.userName');
             $password = $config->get('dwms.password');
             $secret = $config->get('dwms.secret');
             $redisConnection = $config->get('dwms.redisConnection');
 
-            return new Dwms($username, $password, $secret, $this->getSimpleCache($redisConnection));
+            return new Dwms($baseUri, $userName, $password, $secret, $this->getSimpleCache($redisConnection));
         });
         $this->app->alias(Dwms::class, 'dwms');
     }
