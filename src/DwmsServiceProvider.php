@@ -54,6 +54,7 @@ class DwmsServiceProvider extends ServiceProvider
             return new Dwms($baseUri, $userName, $password, $secret, $this->getSimpleCache($redisConnection));
         });
         $this->app->alias(Dwms::class, 'dwms');
+
     }
 
     /**
