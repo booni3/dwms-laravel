@@ -6,7 +6,9 @@ use Booni3\Dwms\Dwms;
 use Booni3\Linnworks\Linnworks;
 use Cache\Adapter\Predis\PredisCachePool;
 use Cache\Bridge\SimpleCache\SimpleCacheBridge;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
+
 
 class DwmsServiceProvider extends ServiceProvider
 {
@@ -65,7 +67,7 @@ class DwmsServiceProvider extends ServiceProvider
      */
     protected function getSimpleCache($redisConnection)
     {
-        $client = \Redis::connection($redisConnection ?: 'default');
+        $client = Redis::connection($redisConnection ?: 'default');
         $pool = new PredisCachePool($client->client());
         $simpleCache = new SimpleCacheBridge($pool);
         return $simpleCache;
