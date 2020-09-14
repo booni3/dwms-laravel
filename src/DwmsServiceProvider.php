@@ -67,10 +67,14 @@ class DwmsServiceProvider extends ServiceProvider
      */
     protected function getSimpleCache($redisConnection)
     {
-        $client = Redis::connection($redisConnection ?: 'default');
-        $pool = new PredisCachePool($client->client());
-        $simpleCache = new SimpleCacheBridge($pool);
-        return $simpleCache;
+        try {
+            $client = Redis::connection($redisConnection ?: 'default');
+            $pool = new PredisCachePool($client->client());
+            $simpleCache = new SimpleCacheBridge($pool);
+            return $simpleCache;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
 
